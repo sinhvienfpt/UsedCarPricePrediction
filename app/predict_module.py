@@ -4,7 +4,7 @@ import pandas as pd
 
 class PredictModule:
     def __init__(self):
-        with open('../../model/model.pkl', 'rb') as model_file:
+        with open('../model/model.pkl', 'rb') as model_file:
             self.model = pickle.load(model_file)
     
     def to_df(self, input_dict):

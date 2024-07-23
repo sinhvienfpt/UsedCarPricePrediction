@@ -1,19 +1,10 @@
 from flask import Flask, render_template, request
-import joblib
 import numpy as np
+from predict_module import PredictModule
 
 app = Flask(__name__)
 
-# # Load the trained model
-# model = joblib.load('car_price_model.pkl')
-
-# Function to preprocess input data
-
-
-
-
-
-
+Predictor = PredictModule()
 
 @app.route('/')
 def home():
@@ -35,21 +26,39 @@ def predict():
         transmission = request.form['transmission']
         owner_type = request.form['Owner_Type']
 
-        # In ra tất cả các giá trị input trong terminal
-        print("Input values:")
-        print(f"Kilometers Driven: {kilometers_driven}")
-        print(f"Power: {power}")
-        print(f"Engine: {engine}")
-        print(f"Year: {year}")
-        print(f"Seats: {seats}")
-        print(f"Mileage: {mileage}")
-        print(f"Brand: {brand}")
-        print(f"Location: {location}")
-        print(f"Fuel Type: {fuel_type}")
-        print(f"Transmission: {transmission}")
-        print(f"Owner Type: {owner_type}")
+        # Create a dictionary with the input values
+        input_dict = {
+            'Kilometers_Driven': kilometers_driven,
+            'Power': power,
+            'Engine': engine,
+            'Year': year,
+            'Seats': seats,
+            'Mileage': mileage,
+            'Brand': brand,
+            'Location': location,
+            'Fuel_Type': fuel_type,
+            'Transmission': transmission,
+            'Owner_Type': owner_type
+        }
 
-        return "Form submitted successfully"
+        # Predict the price
+        predicted_price = Predictor.predict(input_dict)
+        
+        # Render the go.html with the predicted price and input parameters
+        return render_template('go.html', 
+                               PredictedPrice=round(predicted_price[0],2),
+                               KilometersDriven=kilometers_driven,
+                               Power=power,
+                               Engine=engine,
+                               Year=year,
+                               Seats=seats,
+                               Mileage=mileage,
+                               Brand=brand,
+                               Location=location,
+                               FuelType=fuel_type,
+                               Transmission=transmission,
+                               OwnerType=owner_type)
+        
 
 if __name__ == '__main__':
     app.run(debug=True)
