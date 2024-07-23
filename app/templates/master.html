@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Used Cars Price Prediction</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1 class="text-center">USED CAR PRICE PREDICTION</h1>
+    </div>
+
+    <div class="row">
+        <form action="/predict" method="post">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="Kilometers_Driven">Kilometers Driven</label>
+                    <input type="number" 
+                           class="form-control" 
+                           id="Kilometers_Driven" 
+                           name="Kilometers_Driven" 
+                           placeholder="Enter Kilometers Driven (171- 131,000)"
+                           min="171" 
+                           max="131000"
+                           value="54840"
+                           onchange="this.value = Math.clamp(this.value, 171, 131000)">
+                </div>
+
+                <div class="form-group">
+                    <label for="Power">Power (bhp)</label>
+                    <input type="number" 
+                           class="form-control" 
+                           id="Power" 
+                           name="Power" 
+                           placeholder="Enter Power (34.2-340.0 bhp)"
+                           min="34.2" 
+                           max="340.0"
+                           step="0.1"
+                           value="99.6"
+                           onchange="this.value = Math.clamp(parseFloat(this.value).toFixed(1), 34.2, 340.0)">
+                </div>
+
+                <div class="form-group">
+                    <label for="Engine">Engine (cc)</label>
+                    <input type="number" 
+                           class="form-control" 
+                           id="Engine" 
+                           name="Engine" 
+                           placeholder="Enter Engine capacity (999-1047 cc)"
+                           value="1485"
+                           min="999" 
+                           max="2997"
+                           step="1"
+                           onchange="this.value = Math.clamp(this.value, 999, 1047)">
+                </div>
+
+                <div class="form-group">
+                    <label for="Year">Year</label>
+                    <input type="number" 
+                           class="form-control" 
+                           id="Year" 
+                           name="Year" 
+                           placeholder="Enter Year (1998-2019)"
+                           min="1998" 
+                           max="2019"
+                           value="2014"
+                           onchange="this.value = Math.clamp(this.value, 1998, 2019)">
+                </div>
+
+                <div class="form-group">
+                    <label for="Seats">Seats</label>
+                    <input type="number" 
+                           class="form-control" 
+                           id="Seats" 
+                           name="Seats" 
+                           placeholder="Enter Seats"
+                           value="5"
+                           min="2" 
+                           max="10"
+                           onchange="this.value = Math.clamp(this.value, 2, 10)">
+                </div>
+
+                <div class="form-group">
+                    <label for="Mileage">Mileage (kmpl)</label>
+                    <input type="number" 
+                           class="form-control" 
+                           id="Mileage" 
+                           name="Mileage" 
+                           placeholder="Enter Mileage (7.2-28.4 kmpl)"
+                           min="7.2" 
+                           max="28.4"
+                           step="0.1"
+                           value="18.8"
+                           onchange="this.value = Math.clamp(parseFloat(this.value).toFixed(1), 7.2, 28.4)">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="brand">Brand:</label>
+                    <input list="brands" id="brand" name="brand" class="form-control" placeholder="Select or type a brand" required>
+                    <datalist id="brands">
+                        <option value="Maruti">
+                        <option value="Hyundai">
+                        <option value="Honda">
+                        <option value="Audi">
+                        <option value="Nissan">
+                        <option value="Toyota">
+                        <option value="Volkswagen">
+                        <option value="Tata">
+                        <option value="Land">
+                        <option value="Mitsubishi">
+                        <option value="Renault">
+                        <option value="Mercedes-Benz">
+                        <option value="BMW">
+                        <option value="Mahindra">
+                        <option value="Ford">
+                        <option value="Porsche">
+                        <option value="Datsun">
+                        <option value="Jaguar">
+                        <option value="Volvo">
+                        <option value="Chevrolet">
+                        <option value="Skoda">
+                        <option value="Mini">
+                        <option value="Fiat">
+                        <option value="Jeep">
+                        <option value="Smart">
+                        <option value="Ambassador">
+                        <option value="Isuzu">
+                        <option value="ISUZU">
+                        <option value="Force">
+                        <option value="Bentley">
+                        <option value="Lamborghini">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input list="locations" id="location" name="location" class="form-control" placeholder="Select or type a location" required>
+                    <datalist id="locations">
+                        <option value="Mumbai">
+                        <option value="Pune">
+                        <option value="Chennai">
+                        <option value="Coimbatore">
+                        <option value="Hyderabad">
+                        <option value="Jaipur">
+                        <option value="Kochi">
+                        <option value="Kolkata">
+                        <option value="Delhi">
+                        <option value="Bangalore">
+                        <option value="Ahmedabad">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="fuelType">Fuel Type:</label>
+                    <select class="form-control" id="fuelType" name="fuelType" required>
+                        <option value="">Select fuel type</option>
+                        <option value="CNG">CNG</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="LPG">LPG</option>
+                        <option value="Petrol">Petrol</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transmission">Transmission:</label>
+                    <select class="form-control" id="transmission" name="transmission" required>
+                        <option value="">Select transmission type</option>
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Owner_Type">Owner Type</label>
+                    <select class="form-control" id="Owner_Type" name="Owner_Type" required>
+                        <option value="">Select Owner Type</option>
+                        <option value="3">First</option>
+                        <option value="2">Second</option>
+                        <option value="1">Third</option>
+                        <option value="0">Fourth & Above</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-12 text-center">
+                <button type="submit" class="btn btn-primary">Predict Price</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

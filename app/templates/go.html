@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Used Cars Price Prediction Result</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1 class="text-center">USED CAR PRICE PREDICTION RESULT</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Predicted Price</h3>
+                </div>
+                <div class="panel-body">
+                    <h2 class="text-center">{{.PredictedPrice}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Input Parameters:</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Kilometers Driven</td>
+                    <td>{{.KilometersDriven}}</td>
+                </tr>
+                <tr>
+                    <td>Power (bhp)</td>
+                    <td>{{.Power}}</td>
+                </tr>
+                <tr>
+                    <td>Engine (cc)</td>
+                    <td>{{.Engine}}</td>
+                </tr>
+                <tr>
+                    <td>Year</td>
+                    <td>{{.Year}}</td>
+                </tr>
+                <tr>
+                    <td>Seats</td>
+                    <td>{{.Seats}}</td>
+                </tr>
+                <tr>
+                    <td>Mileage (kmpl)</td>
+                    <td>{{.Mileage}}</td>
+                </tr>
+                <tr>
+                    <td>Brand</td>
+                    <td>{{.Brand}}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>{{.Location}}</td>
+                </tr>
+                <tr>
+                    <td>Fuel Type</td>
+                    <td>{{.FuelType}}</td>
+                </tr>
+                <tr>
+                    <td>Transmission</td>
+                    <td>{{.Transmission}}</td>
+                </tr>
+                <tr>
+                    <td>Owner Type</td>
+                    <td>{{.OwnerType}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <a href="/" class="btn btn-primary">Back to Prediction Form</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

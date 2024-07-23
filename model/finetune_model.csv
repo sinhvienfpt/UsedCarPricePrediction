@@ -1,0 +1,8 @@
+Model,Best Parameters,MSE,MAE,R2
+XGBoost,"{'learning_rate': 0.3, 'max_depth': 3, 'n_estimators': 300}",1.506640385244904,0.7549311477072439,0.9041045194441384
+Gradient Boosting,"{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 300}",1.5861365263582714,0.7610192815989303,0.8990447050856085
+LightGBM,"{'learning_rate': 0.3, 'max_depth': 3, 'n_estimators': 300}",1.6124023132122867,0.7836485849869946,0.8973729257564396
+Random Forest,"{'max_depth': None, 'min_samples_split': 2, 'n_estimators': 300}",1.855219694518941,0.8489468213844352,0.8819179507698687
+Linear Regression,{},2.8684695432003857,1.203708430915154,0.8174260639772105
+Decision Tree,"{'max_depth': 10, 'min_samples_split': 10}",3.0075653273809335,1.1139836476292728,0.8085728185724553
+KNN,"{'n_neighbors': 9, 'weights': 'distance'}",9.071642597883185,2.1634742585783298,0.4226030744465763

@@ -2,7 +2,6 @@ import pickle
 import numpy as np
 import pandas as pd
 
-
 class PredictModule:
     def __init__(self):
         with open('../../model/model.pkl', 'rb') as model_file:
