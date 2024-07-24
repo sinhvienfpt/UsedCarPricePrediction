@@ -8,16 +8,19 @@ class PredictModule:
             self.model = pickle.load(model_file)
     
     def to_df(self, input_dict):
+        if input_dict['Brand'] == 'Land Rover':
+            input_dict['Brand'] = 'Land'
+            
         features = ['Kilometers_Driven', 'Owner_Type', 'Mileage', 'Engine', 'Power',
             'Seats', 'Age', 'Ahmedabad', 'Bangalore', 'Chennai', 'Coimbatore',
             'Delhi', 'Hyderabad', 'Jaipur', 'Kochi', 'Kolkata', 'Mumbai', 'Pune',
             'CNG', 'Diesel', 'LPG', 'Petrol', 'Automatic', 'Manual', 'Ambassador',
             'Audi', 'BMW', 'Bentley', 'Chevrolet', 'Datsun', 'Fiat', 'Force',
-            'Ford', 'Honda', 'Hyundai', 'ISUZU', 'Isuzu', 'Jaguar', 'Jeep',
+            'Ford', 'Honda', 'Hyundai', 'Isuzu', 'Jaguar', 'Jeep',
             'Lamborghini', 'Land', 'Mahindra', 'Maruti', 'Mercedes-Benz', 'Mini',
             'Mitsubishi', 'Nissan', 'Porsche', 'Renault', 'Skoda', 'Smart', 'Tata',
             'Toyota', 'Volkswagen', 'Volvo']
-
+    
         # Create a DataFrame with all zeros
         zeros_array = np.zeros((1, len(features)))
         # Create a DataFrame from the numpy array
@@ -49,7 +52,7 @@ class PredictModule:
     
 # Test the class
 if __name__ == '__main__':
-    example_input_dict = {'Kilometers_Driven': 54840, 'Power': 99.6, 'Engine': 1485, 'Year': 2014, 'Seats': 5, 'Mileage': 18.8, 'Brand': 'Volkswagen', 'Location': 'Chennai', 'Fuel_Type': 'Petrol', 'Transmission': 'Automatic', 'Owner_Type': 3}
+    example_input_dict = {'Kilometers_Driven': 54840, 'Power': 99.6, 'Engine': 1485, 'Year': 2014, 'Seats': 5, 'Mileage': 18.8, 'Brand': 'Land Rover', 'Location': 'Chennai', 'Fuel_Type': 'Petrol', 'Transmission': 'Automatic', 'Owner_Type': 3}
 
     predict_module = PredictModule()
     predict_module.print_result(example_input_dict)

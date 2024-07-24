@@ -6,6 +6,7 @@ def DataProcess(df : pd.DataFrame) -> pd.DataFrame:
 
     
     print("Step 0: Take Brand from Name")
+    df['Name'] = df['Name'].str.replace('ISUZU','Isuzu')
     df["Brand"] = df["Name"].apply(lambda x : x.split()[0])
     print("Step 0 Done")
     
