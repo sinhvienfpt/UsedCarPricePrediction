@@ -7,7 +7,7 @@ class PredictModule:
         with open('../model/model.pkl', 'rb') as model_file:
             self.model = pickle.load(model_file)
     
-    def to_df(self, input_dict):
+    def to_df(self, input_dict): 
         if input_dict['Brand'] == 'Land Rover':
             input_dict['Brand'] = 'Land'
             
